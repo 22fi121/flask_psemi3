@@ -40,10 +40,8 @@ def update(id):
         db.session.commit()
         
         return redirect('/')
-    
-    # GETリクエスト時はフォームを表示
+    # GETリクエストのときは現在のタスク情報をフォームに表示
     return render_template("update.html", task=update_task)
-
 @app.route("/")
 def index():
     tasks = Todo.query.all()
