@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>トップページ</h1>
+<link rel="stylesheet" href="/static/css/style.css">
+<!-- フォーム -->
+<div class="form">
+    <form action="/create" method="POST">
+        <label for="title">Title</label>
+        <input type="text" name="title" required />
+
+        <label for="details">Details</label>
+        <input type="text" name="details" required />
+
+        <input type="submit" value="Create" />
+    </form>
+</div>
+
+<!-- タスクのリスト表示 -->
+<div class="task-list">
+    {% for task in tasks %}
+    <div class="card">
+        <div class="card-body">
+            <h2>タイトル: {{ task.title }}</h2> 
+            <p>詳細: {{ task.details }}</p> 
+            <a class="btn btn-outline-primary" href="/delete/{{ task.id }}" role="button">Delete</a>
+            <a href="/update/{{ task.id }}" role="button">Update</a> 
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
